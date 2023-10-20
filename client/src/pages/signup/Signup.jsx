@@ -39,6 +39,7 @@ export default function Signup() {
             data.email = email;
             data.password = password;
             data.name = name;
+            data.type = type;
 
             switch (type) {
                 case "Student":
