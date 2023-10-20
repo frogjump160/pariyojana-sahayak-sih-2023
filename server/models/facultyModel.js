@@ -19,12 +19,12 @@ const facultySchema = new mongoose.Schema({
         required: true,
     },
 
-    employee_id: {
+    employeeID: {
         type: String,
         required: true,
     },
 
-    qualifications: {
+    qualifications_and_specializations: {
         type: String,
         required: true,
     },
