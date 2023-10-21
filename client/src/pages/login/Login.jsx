@@ -14,7 +14,6 @@ import Dropdown from "../../components/Dropdown";
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [type, setType] = useState("Select Type");
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -33,7 +32,6 @@ export default function Login() {
             const res = await axios.post(`/api/v1/auth/login`, {
                 email,
                 password,
-                type,
             });
 
             if (res && res.data.success) {
@@ -58,8 +56,7 @@ export default function Login() {
     };
 
     return (
-        // <form className="login-form" method="POST" onSubmit={handleSubmit}>
-        <div className="login-form">
+        <form className="login-form" method="POST" onSubmit={handleSubmit}>
             <h2>Login</h2>
             <Toaster />
 
@@ -83,15 +80,7 @@ export default function Login() {
                 />
             </label>
 
-            <Dropdown name={type} itemList={typeList} setItem={setType} />
-
-            <button
-                type="submit"
-                className="btn btn-outline-success"
-                onClick={handleSubmit}
-            >
-                Login
-            </button>
-        </div>
+            <button className="btn btn-outline-success">Login</button>
+        </form>
     );
 }

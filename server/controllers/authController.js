@@ -3,6 +3,7 @@ import JWT from "jsonwebtoken";
 import studentModel from "../models/studentModel.js";
 import facultyModel from "../models/facultyModel.js";
 import instituteModel from "../models/instituteModel.js";
+import userModel from "../models/userModel.js";
 
 export const registerController = async (req, res) => {
     try {
@@ -23,19 +24,19 @@ export const registerController = async (req, res) => {
             return res.send({ message: "Password is Required." });
         }
 
-        let userModel;
+        let collection;
 
         switch (userData?.type) {
             case "Student":
-                userModel = studentModel;
+                collection = studentModel;
                 break;
 
             case "Faculty":
-                userModel = facultyModel;
+                collection = facultyModel;
                 break;
 
             case "Institute":
-                userModel = instituteModel;
+                collection = instituteModel;
                 break;
         }
 
@@ -54,8 +55,18 @@ export const registerController = async (req, res) => {
         const hashedPassword = await hashPassword(userData.password);
         userData.password = hashedPassword;
 
-        // save
-        const user = await new userModel(userData).save();
+        const userEntry = {
+            email: userData.email,
+            password: hashedPassword,
+            type: userData.type,
+        };
+
+        // save to user collection
+        const user = await new userModel(userEntry).save();
+        userData._id = user._id;
+
+        // save to particular collection
+        await new collection(userData, { _id: user._id }).save();
 
         res.status(201).send({
             success: true,
@@ -74,33 +85,19 @@ export const registerController = async (req, res) => {
 // POST LOGIN
 export const loginController = async (req, res) => {
     try {
-        const { email, password, type } = req.body;
+        const { email, password } = req.body;
 
-        if (!email || !password || !type) {
+        if (!email || !password) {
             return res.status(404).send({
                 success: false,
-                message: "Invalid email / password / type",
+                message: "Invalid email / password",
             });
-        }
-
-        let userModel;
-
-        switch (type) {
-            case "Student":
-                userModel = studentModel;
-                break;
-
-            case "Faculty":
-                userModel = facultyModel;
-                break;
-
-            case "Institute":
-                userModel = instituteModel;
-                break;
         }
 
         // check user
         let user = await userModel.findOne({ email });
+
+        // console.log(user);
 
         if (!user) {
             return res.status(404).send({
@@ -120,7 +117,7 @@ export const loginController = async (req, res) => {
 
         // token
         const token = JWT.sign(
-            { _id: user._id, type: type },
+            { _id: user._id, type: user.type },
             process.env.JWT_SECRET,
             {
                 expiresIn: "7d",
@@ -133,7 +130,7 @@ export const loginController = async (req, res) => {
             user: {
                 _id: user._id,
                 // email: user.email,
-                type: type,
+                type: user.type,
                 // imgUrl: user.imgUrl,
             },
             token,
