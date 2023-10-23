@@ -35,7 +35,6 @@ function Navbar() {
         if (auth?.user) {
             return (
                 <>
-                    {/* <li ><Link to="/about" className="nav-item btn btn-outline-primary">About</Link></li> */}
                     <li
                         className="nav-item btn btn-light"
                         type="button"
@@ -43,16 +42,7 @@ function Navbar() {
                         data-bs-target="#offcanvasWithBothOptions"
                         aria-controls="offcanvasWithBothOptions"
                     >
-                        Profile <FaUserCircle style={userIcon} />
-                        {/* <OffCanvas /> */}
-                    </li>
-                    <li>
-                        <Link
-                            onClick={handleLogout}
-                            className="nav-item btn btn-outline-primary"
-                        >
-                            Logout
-                        </Link>
+                        <FaUserCircle style={userIcon} />
                     </li>
                 </>
             );
@@ -90,7 +80,7 @@ function Navbar() {
         <nav className="navbar navbar-expand-md bg-dark">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
-                    Doubt Remedy
+                    Pariyojana Sahayak
                 </Link>
                 {/* <a className="navbar-brand" href="/">Doubt Remedy</a> */}
                 <button

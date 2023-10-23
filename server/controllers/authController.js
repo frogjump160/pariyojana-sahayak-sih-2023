@@ -124,11 +124,38 @@ export const loginController = async (req, res) => {
             }
         );
 
+        let name;
+        let institute;
+
+        switch (user.type) {
+            case "Student":
+                let student = await studentModel.findOne({ _id: user._id });
+                name = student.name;
+                institute = student.institute;
+                break;
+
+            case "Faculty":
+                let faculty = await facultyModel.findOne({ _id: user._id });
+                name = faculty.name;
+                institute = faculty.institute;
+                break;
+
+            case "Institute":
+                let _institute = await instituteModel.findOne({
+                    _id: user._id,
+                });
+                name = _institute.name;
+                institute = name;
+                break;
+        }
+
         res.status(200).send({
             success: true,
             message: "Login successfully",
             user: {
                 _id: user._id,
+                name: name,
+                institute: institute,
                 // email: user.email,
                 type: user.type,
                 // imgUrl: user.imgUrl,

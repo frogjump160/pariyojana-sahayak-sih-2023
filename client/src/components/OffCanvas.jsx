@@ -3,7 +3,7 @@ import ProfilePicture from "./ProfilePicture";
 
 // styles
 import "./OffCanvas.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 // icons
 import { FaQuestionCircle } from "react-icons/fa";
@@ -19,7 +19,9 @@ import { GiMoneyStack } from "react-icons/gi";
 import { UserState } from "../context/AuthContext";
 
 function OffCanvas() {
-    const { auth } = UserState();
+    const { auth, setAuth } = UserState();
+
+    const navigate = useNavigate();
 
     const closeBtnStyle = {
         marginLeft: "auto",
@@ -28,9 +30,23 @@ function OffCanvas() {
         backgroundColor: "white",
     };
 
+    const handleLogout = () => {
+        setAuth({
+            ...auth,
+            user: null,
+            token: "",
+        });
+
+        localStorage.removeItem("userInfo");
+
+        navigate("/");
+
+        // toast.success("Logout successfully");
+    };
+
     return (
         <div
-            className="offcanvas offcanvas-start"
+            className="offcanvas offcanvas-end"
             data-bs-scroll="true"
             tabIndex="-1"
             id="offcanvasWithBothOptions"
@@ -55,7 +71,7 @@ function OffCanvas() {
                     <ProfilePicture
                         // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS9-73UZFtwlGMya7r7RPUm8N4na0r_TFLj0JUoh8j9W-2OYo&s"
                         src={auth?.user?.imgUrl}
-                        username={auth?.user?.username}
+                        username={auth?.user?.name}
                     />
                     {/* <p>{user.displayName}</p> */}
                 </h5>
@@ -64,6 +80,10 @@ function OffCanvas() {
             <div className="offcanvas-body" id="sidebar">
                 <NavLink to="/" className="nav-link-item">
                     <AiOutlineHome className="offcanvas-icons" /> Home
+                </NavLink>
+
+                <NavLink to="/create-project" className="nav-link-item">
+                    <AiOutlineHome className="offcanvas-icons" /> Create Project
                 </NavLink>
 
                 <NavLink to="/ask" className="nav-link-item">
@@ -75,9 +95,12 @@ function OffCanvas() {
                     Questions
                 </NavLink>
 
-                <NavLink to="/my_answered_questions" className="nav-link-item">
-                    <BiMessageAltCheck className="offcanvas-icons" /> Answered
-                    Questions
+                <NavLink
+                    onClick={handleLogout}
+                    to="/logout"
+                    className="nav-link-item"
+                >
+                    <BiMessageAltCheck className="offcanvas-icons" /> Logout
                 </NavLink>
             </div>
         </div>

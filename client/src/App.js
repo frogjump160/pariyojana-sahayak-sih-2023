@@ -10,6 +10,7 @@ import OffCanvas from "./components/OffCanvas";
 import { UserState } from "./context/AuthContext";
 import { Navigate } from "react-router-dom";
 import SearchResults from "./pages/search/SearchResults";
+import CreateProject from "./pages/projects/CreateProject";
 
 const Routing = () => {
     const { auth } = UserState();
@@ -26,6 +27,12 @@ const Routing = () => {
             <Route
                 path="/signup"
                 element={!auth?.user ? <Signup /> : <Navigate to="/" />}
+            />
+            <Route
+                path="/create-project"
+                element={
+                    auth?.user ? <CreateProject /> : <Navigate to="/login" />
+                }
             />
             {/* <Route path="/signup" element={<Signup />} /> */}
             <Route path="/logout" element={<Logout />} />

@@ -1,13 +1,18 @@
 import mongoose from "mongoose";
 
 // defining student schema
-const instituteSchema = new mongoose.Schema({
+const projectSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
     },
+    
+    description :{
+    	type : String,
+    	required : true,
+    },
 
-    category_tags_list: {
+    tags_list: {
         type: [String], // // array of category names
     },
 
@@ -27,7 +32,7 @@ const instituteSchema = new mongoose.Schema({
         type: [String],
     },
 
-    profile_pic: {
+    thumbnail: {
         data: Buffer,
         contentType: String,
     },
@@ -35,7 +40,12 @@ const instituteSchema = new mongoose.Schema({
     is_published: {
         type: Boolean,
     },
+
+    start_date: Date,
+    end_date: Date,
+    application_start_date: Date,
+    application_end_date: Date,
 });
 
 // collection creation
-export default new mongoose.model("PROJECT", instituteSchema);
+export default new mongoose.model("PROJECT", projectSchema);
