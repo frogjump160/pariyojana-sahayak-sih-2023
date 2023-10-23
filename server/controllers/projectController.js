@@ -2,6 +2,9 @@
 import fs from "fs";
 
 import projectModel from "../models/projectModel.js";
+import facultyModel from "../models/facultyModel.js";
+import instituteModel from "../models/instituteModel.js";
+import studentModel from "../models/studentModel.js";
 
 export const getTrendingProjectsController = async (req, res) => {
     try {
@@ -64,7 +67,17 @@ export const createProjectController = async (req, res) => {
             project.thumbnail.contentType = thumbnail.type;
         }
 
-        await project.save();
+        let proj = await project.save();
+
+        if (req.user.type == "Faculty") {
+            await facultyModel.findByIdAndUpdate(req.user._id, {
+                $push: { ongoing_projects_list: proj._id },
+            });
+        } else if (req.user.type == "Institute") {
+            await facultyModel.findByIdAndUpdate(req.user._id, {
+                $push: { ongoing_projects_list: proj._id },
+            });
+        }
 
         res.status(201).send({
             success: true,
@@ -100,6 +113,94 @@ export const projectThumbnailController = async (req, res) => {
             success: false,
             error,
             message: "Error while fetching project thumbnail",
+        });
+    }
+};
+
+export const getOngoingProjectsListController = async (req, res) => {
+    try {
+        let collection;
+
+        switch (req.user.type) {
+            case "Student":
+                collection = studentModel;
+                break;
+            case "Faculty":
+                collection = facultyModel;
+                break;
+            case "Institute":
+                collection = instituteModel;
+                break;
+        }
+
+        const projects = await collection
+            .findOne({ _id: req.user._id })
+            .select("ongoing_projects_list -_id");
+
+        res.status(200).send({
+            success: true,
+            projects: projects.ongoing_projects_list,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Could not fetch ongoing projects",
+            error,
+        });
+    }
+};
+
+export const getPublishedProjectsListController = async (req, res) => {
+    try {
+        let collection;
+
+        switch (req.user.type) {
+            case "Student":
+                collection = studentModel;
+                break;
+            case "Faculty":
+                collection = facultyModel;
+                break;
+            case "Institute":
+                collection = instituteModel;
+                break;
+        }
+
+        const projects = await collection
+            .findOne({ _id: req.user._id })
+            .select("published_projects_list -_id");
+
+        res.status(200).send({
+            success: true,
+            projects: projects.published_projects_list,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Could not fetch published projects",
+            error,
+        });
+    }
+};
+
+export const getProjectDetailsByIdController = async (req, res) => {
+    try {
+        const project = await projectModel.findOne({ _id: req.params.pid });
+
+        // console.log(project);
+
+        res.status(200).send({
+            success: true,
+            project,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Could not fetch trending projects",
+            error,
         });
     }
 };

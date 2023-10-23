@@ -6,10 +6,10 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    
-    description :{
-    	type : String,
-    	required : true,
+
+    description: {
+        type: String,
+        required: true,
     },
 
     tags_list: {
@@ -39,6 +39,11 @@ const projectSchema = new mongoose.Schema({
 
     is_published: {
         type: Boolean,
+    },
+
+    open_for: {
+        type: String,
+        required: true,
     },
 
     start_date: Date,

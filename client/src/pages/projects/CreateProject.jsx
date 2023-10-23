@@ -6,6 +6,8 @@ import { WithContext as ReactTags } from "react-tag-input";
 
 import "./CreateProject.css";
 import { UserState } from "../../context/AuthContext";
+import Dropdown from "../../components/Dropdown";
+import { openingType } from "../../data/projectOpeningTypeList";
 
 function CreateProject() {
     const { auth } = UserState();
@@ -24,6 +26,8 @@ function CreateProject() {
     const [applicationEndDate, setApplicationEndDate] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
+    const [projectOpeningType, setProjectOpeningType] =
+        useState("Open For All");
 
     const navigate = useNavigate();
 
@@ -49,6 +53,7 @@ function CreateProject() {
             projectData.append("is_published", false);
             projectData.append("host_institute", auth?.user?.institute);
             projectData.append("faculty_list", facultyList);
+            projectData.append("open_for", projectOpeningType);
 
             // projectData.append("category", category);
 
@@ -66,7 +71,7 @@ function CreateProject() {
                 toast.success("Project created successfully");
                 navigate("/");
             } else {
-                toast.error(data?.message);
+                toast.error(data);
             }
         } catch (error) {
             console.log(error);
@@ -97,7 +102,7 @@ function CreateProject() {
 
     return (
         <div>
-            <form className="project-form" onSubmit={handleSubmit}>
+            <div className="project-form">
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">
                         Project title :
@@ -182,7 +187,7 @@ function CreateProject() {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="project_start_date" className="form-label">
-                        Project Start Date :
+                        Project Start Date (Required):
                     </label>
                     <input
                         type="date"
@@ -267,10 +272,16 @@ function CreateProject() {
                     />
                 </div>
 
+                <Dropdown
+                    name={projectOpeningType}
+                    itemList={openingType}
+                    setItem={setProjectOpeningType}
+                />
+
                 <button className="btn btn-primary" onClick={handleSubmit}>
                     Submit
                 </button>
-            </form>
+            </div>
         </div>
     );
 }

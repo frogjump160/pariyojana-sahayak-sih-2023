@@ -8,7 +8,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 // icons
 import { FaQuestionCircle } from "react-icons/fa";
 import { BiMessageAltCheck } from "react-icons/bi";
-import { AiOutlineUpload } from "react-icons/ai";
+import {
+    AiFillPlusCircle,
+    AiFillProject,
+    AiOutlineUpload,
+} from "react-icons/ai";
 import { AiOutlineHome } from "react-icons/ai";
 import { GiBrain } from "react-icons/gi";
 import { RiVideoAddLine } from "react-icons/ri";
@@ -83,11 +87,12 @@ function OffCanvas() {
                 </NavLink>
 
                 <NavLink to="/create-project" className="nav-link-item">
-                    <AiOutlineHome className="offcanvas-icons" /> Create Project
+                    <AiFillPlusCircle className="offcanvas-icons" /> Create
+                    Project
                 </NavLink>
 
-                <NavLink to="/ask" className="nav-link-item">
-                    <GiBrain className="offcanvas-icons" /> Ask a Question
+                <NavLink to="/projects" className="nav-link-item">
+                    <AiFillProject className="offcanvas-icons" /> Projects
                 </NavLink>
 
                 <NavLink to="/my_questions" className="nav-link-item">

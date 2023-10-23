@@ -9,6 +9,7 @@ export const requireSignIn = async (req, res, next) => {
         );
 
         req.user = decode;
+        console.log(req.user);
         next();
     } catch (error) {
         res.status(401).send("Unauthorized : no token provided.");
@@ -75,6 +76,27 @@ export const isInstitute = async (req, res, next) => {
             success: false,
             error,
             message: "Error in Institute middleware",
+        });
+    }
+};
+
+// institute access
+export const isInstituteOrFaculty = async (req, res, next) => {
+    try {
+        if (req.user.type !== "Institute" || req.user.type !== "Faculty") {
+            return res.status(401).send({
+                success: false,
+                message: "Unauthorized Access",
+            });
+        } else {
+            next();
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(401).send({
+            success: false,
+            error,
+            message: "Error in Institute or Faculty middleware",
         });
     }
 };

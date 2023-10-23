@@ -11,6 +11,8 @@ import { UserState } from "./context/AuthContext";
 import { Navigate } from "react-router-dom";
 import SearchResults from "./pages/search/SearchResults";
 import CreateProject from "./pages/projects/CreateProject";
+import Projects from "./pages/projects/Projects";
+import { Toaster } from "react-hot-toast";
 
 const Routing = () => {
     const { auth } = UserState();
@@ -35,6 +37,10 @@ const Routing = () => {
                 }
             />
             {/* <Route path="/signup" element={<Signup />} /> */}
+            <Route
+                path="/projects"
+                element={!auth?.user ? <Signup /> : <Projects />}
+            />
             <Route path="/logout" element={<Logout />} />
             <Route path="/userdata" element={<Userdata />} />
         </Routes>
@@ -46,6 +52,9 @@ function App() {
 
     return (
         <div className="App">
+            <div>
+                <Toaster />
+            </div>
             <Navbar />
             {auth?.user && <OffCanvas />}
             <Routing />
