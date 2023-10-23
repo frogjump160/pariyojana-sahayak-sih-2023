@@ -10,7 +10,7 @@ function Dropdown(props) {
     return (
         <div>
             <div className="dropdown">
-                <a className="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a className="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {name}
                 </a>
 

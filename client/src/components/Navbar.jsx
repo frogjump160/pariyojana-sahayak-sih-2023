@@ -6,6 +6,7 @@ import "./Navbar.css";
 // icons
 import { FaUserCircle } from "react-icons/fa";
 import { UserState } from "../context/AuthContext";
+import SearchComponent from "./SearchComponent";
 
 // components
 // import OffCanvas from './OffCanvas'
@@ -35,6 +36,9 @@ function Navbar() {
         if (auth?.user) {
             return (
                 <>
+                    <li>
+                        {/* <SearchComponent /> */}
+                    </li>   
                     <li
                         className="nav-item btn btn-light"
                         type="button"
@@ -50,6 +54,9 @@ function Navbar() {
             return (
                 <>
                     {/* <li ><Link to="/about" className="nav-item btn btn-outline-primary">About</Link></li> */}
+                    <li>
+                        <SearchComponent />
+                    </li>   
                     <li>
                         <Link
                             to="/login"
@@ -77,12 +84,11 @@ function Navbar() {
     };
 
     return (
-        <nav className="navbar navbar-expand-md bg-dark">
+        <nav className="navbar navbar-expand-md navbar-custom">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
                     Pariyojana Sahayak
                 </Link>
-                {/* <a className="navbar-brand" href="/">Doubt Remedy</a> */}
                 <button
                     className="navbar-toggler"
                     style={{ backgroundColor: "white" }}

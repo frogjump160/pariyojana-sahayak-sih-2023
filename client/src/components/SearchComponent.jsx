@@ -46,7 +46,7 @@ function SearchComponent() {
                         type="submit"
                         className="btn btn-primary"
                         onClick={searchRequest}
-                        style={{fontSize : "1.3rem"}}
+                        // style={{fontSize : "1.3rem"}}
                     >
                     <BsSearch size="1.5rem" /> &nbsp;
                         Search

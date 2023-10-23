@@ -5,7 +5,7 @@
 }
 
 .offcanvas {
-    background-color: black;
+    background-color: #08afad;
     color: white;
 }
 
@@ -20,23 +20,37 @@
     /* text-decoration: none !important; */
 }
 
+.offcanvas-body {
+    padding: 0;
+}
+
 .nav-link-item {
-    color: white;
+    color: #04514D;
     text-decoration: none;
     width: 100%;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-align: left;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-    padding: 0.3rem;
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
+    border-width: 10px;
+    /* border-top: solid; */
+    border-bottom: solid;
+    border-color: #04514D;
+    /* border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px; */
+    padding: 1rem;
+    /* margin-top: 0.3rem;
+    margin-bottom: 0.3rem; */
+    font-weight: 600;
 }
 
 .offcanvas-icons {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-left: 1.5rem;
     margin-right: 1rem;
+}
+
+.nav-link-item:hover {
+    background-color: #6dc9c3;
+    color: #0f7b77;
 }
 
 #sidebar {
@@ -46,7 +60,7 @@
 }
 
 #sidebar a.active {
-
-    background-color: white;
-    color: black;
+    background-color: #0f7b77;
+    color: #6dc9c3;
 }
+

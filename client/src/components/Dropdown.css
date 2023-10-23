@@ -1,3 +1,30 @@
 .dropdown{
     margin : 1rem;
 }
+
+.dropdown-toggle {
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: #0f7b77;
+    padding: 0.8rem;
+    color: #6dc9c3;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.dropdown-item {
+    background-color: #6dc9c3;
+    color: #0f7b77;
+}
+
+.dropdown-item:hover {
+    color: #04514D;    
+    background-color: #08afad;
+}
+
+
+
+
+.dropdown-menu {
+    background-color: #6dc9c3;
+}

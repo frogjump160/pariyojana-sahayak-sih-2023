@@ -1,14 +1,24 @@
 .project-card {
-    width: 15rem;
-    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 24rem;
+    height: 13.5rem;
     overflow: hidden;
     margin: 1.2rem;
     border-radius: 5%;
+    text-align: right;
+    padding: 1.2%;
 }
 
 .project-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff6ee;
+}
 
-    color: white;
-    position: relative;
-    top: 8rem
+.project-desc {
+    font-size: 1rem;
+    color: #fff6ee;
 }

@@ -9,7 +9,7 @@ import "./ProfilePicture.css"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function ProfilePicture({ src, username }) {
+function ProfilePicture({ src, username, fontColor }) {
 
 	const { user } = UserState()
 	const [updateRequest, setUpdateRequest] = useState(false)
@@ -125,8 +125,8 @@ function ProfilePicture({ src, username }) {
 		<div className="profile-div">
 			{/* <ToastContainer /> */}
 			<img src={src} className="profile-img" />
-			<p>{username}</p>
-			{!updateRequest &&
+			<p style={{color: fontColor, fontWeight: "700", fontSize: "2rem", margin: "1rem 0 0 0"}}>{username}</p>
+			{/* {!updateRequest &&
 				<button
 					className="btn btn-primary"
 					onClick={() => { setUpdateRequest(true) }}
@@ -152,7 +152,7 @@ function ProfilePicture({ src, username }) {
 					>Cancel</button>
 				</div>
 
-			}
+			} */}
 		</div>
 	)
 }

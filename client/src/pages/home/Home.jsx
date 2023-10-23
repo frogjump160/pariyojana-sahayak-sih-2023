@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import InfiniteScroll from "../../../node_modules/react-infinite-scroll-component/dist/index.es";
 import ProjectCard from "../../components/ProjectCard";
 import ProjectGrid from "../../components/ProjectGrid";
+import Heading from "../../components/Heading";
 
 function Home() {
     const { auth } = UserState();
@@ -45,10 +46,10 @@ function Home() {
 
     return (
         <div className="home-div container-fluid">
-            <div>{auth?.user?._id}</div>
-            <div>{auth?.user?.type}</div>
+            {/* <div>{auth?.user?._id}</div>
+            <div>{auth?.user?.type}</div> */}
 
-            <h1>Trending Projects</h1>
+            <Heading>TRENDING PROJECTS</Heading>
 
             <InfiniteScroll
                 dataLength={projectsList.length}

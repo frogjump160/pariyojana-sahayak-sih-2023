@@ -73,16 +73,17 @@ function OffCanvas() {
                         displayName={user.displayName}
                     /> */}
                     <ProfilePicture
-                        // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS9-73UZFtwlGMya7r7RPUm8N4na0r_TFLj0JUoh8j9W-2OYo&s"
-                        src={auth?.user?.imgUrl}
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS9-73UZFtwlGMya7r7RPUm8N4na0r_TFLj0JUoh8j9W-2OYo&s"
+                        // src={auth?.user?.imgUrl}
                         username={auth?.user?.name}
+                        fontColor="#04514D"
                     />
                     {/* <p>{user.displayName}</p> */}
                 </h5>
             </div>
 
             <div className="offcanvas-body" id="sidebar">
-                <NavLink to="/" className="nav-link-item">
+                <NavLink to="/" className="nav-link-item" style={{borderTop: "solid", borderColor: "#04514D"}}>
                     <AiOutlineHome className="offcanvas-icons" /> Home
                 </NavLink>
 

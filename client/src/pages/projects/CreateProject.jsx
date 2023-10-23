@@ -8,6 +8,7 @@ import "./CreateProject.css";
 import { UserState } from "../../context/AuthContext";
 import Dropdown from "../../components/Dropdown";
 import { openingType } from "../../data/projectOpeningTypeList";
+import Heading from "../../components/Heading";
 
 function CreateProject() {
     const { auth } = UserState();
@@ -102,6 +103,7 @@ function CreateProject() {
 
     return (
         <div>
+            <Heading>CREATE PROJECT</Heading>
             <div className="project-form">
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">

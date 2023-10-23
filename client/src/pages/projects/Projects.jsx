@@ -11,6 +11,7 @@ import InfiniteScroll from "../../../node_modules/react-infinite-scroll-componen
 import ProjectCard from "../../components/ProjectCard";
 import ProjectGrid from "../../components/ProjectGrid";
 import Dropdown from "../../components/Dropdown";
+import Heading from "../../components/Heading";
 
 function Projects() {
     const { auth } = UserState();
@@ -144,10 +145,10 @@ function Projects() {
 
     return (
         <div className="home-div container-fluid">
-            <div>{auth?.user?._id}</div>
-            <div>{auth?.user?.type}</div>
+            {/* <div>{auth?.user?._id}</div>
+            <div>{auth?.user?.type}</div> */}
 
-            <h1>Your Projects</h1>
+            <Heading>YOUR PROJECTS</Heading>
             <Dropdown
                 name={projectType}
                 itemList={["Published", "Ongoing"]}

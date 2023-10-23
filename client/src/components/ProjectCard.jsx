@@ -28,6 +28,9 @@ function ProjectCard({ project }) {
     const projectUrl = `/project_details/${project._id}`;
     const imageUrl = `api/v1/projects/project-thumbnail/${project._id}`;
 
+    const desc = project.description.substring(0, 70) + ((project.description.length > 70) ? "..." : "");
+
+
     return (
         <div
             onClick={() => {
@@ -35,10 +38,11 @@ function ProjectCard({ project }) {
             }}
             className="col-lg-3 col-md-6 col-sm-12 project-card"
             style={{
-                backgroundImage: `linear-gradient(to bottom, rgba(217, 221, 242, 0.52), rgb(83, 71, 71)), url(${imageUrl})`,
+                backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgb(0, 0, 0)), url(${imageUrl})`,
             }}
         >
             <div className="project-title">{project.title}</div>
+            <div className="project-desc">{desc}</div>
         </div>
     );
 }
