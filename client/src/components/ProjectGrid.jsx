@@ -11,7 +11,7 @@ function ProjectGrid({ projectList }) {
         <div className="project-grid-holder container">
             <div className="project-grid row justify-content-center">
                 {projectList.map((project, index) => {
-                    return <ProjectCard project={project} key={index} />;
+                    return <ProjectCard project={project} key={project._id} />;
                 })}
             </div>
         </div>

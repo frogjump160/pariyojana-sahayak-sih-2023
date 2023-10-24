@@ -1,6 +1,15 @@
 .project-description {
     text-align: left;
     font-size: 1rem;
-    width: 50%;
-    margin: 1rem;
+    width: 72%;
+    /* margin-left: 3vw; */
 }
+
+.project-authors {
+    text-align: left;
+    font-size: 1rem;
+    width: 22%;
+    /* margin-left: 3vw;
+    margin-right: 3vw; */
+}
+

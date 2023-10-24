@@ -87,6 +87,10 @@ function OffCanvas() {
                     <AiOutlineHome className="offcanvas-icons" /> Home
                 </NavLink>
 
+                <NavLink to={`/profile/${auth?.user?._id}`} className="nav-link-item">
+                    <AiFillPlusCircle className="offcanvas-icons" /> Profile
+                </NavLink>
+
                 <NavLink to="/create-project" className="nav-link-item">
                     <AiFillPlusCircle className="offcanvas-icons" /> Create
                     Project

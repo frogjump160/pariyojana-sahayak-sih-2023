@@ -14,6 +14,7 @@ import CreateProject from "./pages/projects/CreateProject";
 import Projects from "./pages/projects/Projects";
 import { Toaster } from "react-hot-toast";
 import ProjectDetails from "./pages/projects/ProjectDetails";
+import Profile from "./pages/profile/Profile";
 
 const Routing = () => {
     const { auth } = UserState();
@@ -42,11 +43,15 @@ const Routing = () => {
                 path="/projects"
                 element={!auth?.user ? <Signup /> : <Projects />}
             />
+            <Route
+                path="/profile/:id"
+                element={<Profile />}
+            />
             <Route path="/project_details/:id" element={<ProjectDetails />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/userdata" element={<Userdata />} />
         </Routes>
-    );
+    ); 
 };
 
 function App() {

@@ -27,7 +27,7 @@ router.get(
 // get user's published mprojects (ongoing / published)
 router.get(
     "/get-published-projects-list",
-    requireSignIn,
+    // requireSignIn,
     getPublishedProjectsListController
 );
 

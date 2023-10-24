@@ -9,26 +9,36 @@ import { format } from "date-fns";
 import "./PublishedProject.css";
 
 function PublishedProject({ project }) {
+    const authorsList = ["Arin", "Saptarshi", "urmom"];
+
     return (
         <div>
             {project && (
                 <>
-                    <div>Published Project ID : {project._id}</div>
+                    {/* <div>Published Project ID : {project._id}</div> */}
                     <h1
                         className="heading"
                         style={{ textAlign: "left", margin: "2rem" }}
                     >
-                        {project?.title}
+                        {project?.title.toUpperCase()}
                     </h1>
-                    <div>Host : {project.host_institute}</div>
+                    {/* <div>Host : {project.host_institute}</div> */}
 
                     {/* <div> */}
-                    <div className="project-description">
-                        {project.description}
+                    <div className = "upper-container">
+                        <div className="project-description">
+                            <h5>DESCRIPTION</h5>
+                            {project.description}
+                        </div>
+                        {/* </div> */}
+                        
+                        <div className="project-authors">
+                            <h5>AUTHORS</h5>
+                            {authorsList.map((n, i)=>(<p key={i}>{n}</p>))}
+                        </div>
                     </div>
-                    {/* </div> */}
 
-                    <div>
+                    {/* <div>
                         <div>
                             Project Start Date : &nbsp;
                             {format(
@@ -41,7 +51,7 @@ function PublishedProject({ project }) {
                             Project End Date : &nbsp;
                             {format(new Date(project?.end_date), "dd-MM-yyyy")}
                         </div>
-                    </div>
+                    </div> */}
                 </>
             )}
         </div>
