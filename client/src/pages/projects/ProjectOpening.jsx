@@ -7,39 +7,22 @@ import Heading from "../../components/Heading";
 import { format } from "date-fns";
 
 import "./ProjectOpening.css";
+import InviteModal from "../../components/InviteModal";
 
 function ProjectOpening({ project }) {
-    // const { id } = useParams();
-
-    // const [project, setProject] = useState(null);
-
-    // const fetchProjectData = async () => {
-    //     try {
-    //         const { data } = await axios.get(
-    //             `/api/v1/projects/get-project-details/${id}`
-    //         );
-
-    //         if (!data?.success) {
-    //             throw "Could not fetch project details.";
-    //         }
-
-    //         console.log(data?.project);
-
-    //         setProject(data?.project);
-    //     } catch (error) {
-    //         toast.error(error);
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     fetchProjectData();
-    // }, []);
+    const [inviteModalShow, setInviteModalShow] = useState(false);
 
     return (
         <div>
             {project && (
                 <>
                     <div>Project ID : {project._id}</div>
+                    <InviteModal
+                        show={inviteModalShow}
+                        onHide={() => {
+                            setInviteModalShow(false);
+                        }}
+                    />
                     <h1
                         className="heading"
                         style={{ textAlign: "left", margin: "2rem" }}
@@ -84,6 +67,14 @@ function ProjectOpening({ project }) {
                             Project End Date : &nbsp;
                             {format(new Date(project?.end_date), "dd-MM-yyyy")}
                         </div>
+                    </div>
+                    <div>
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => setInviteModalShow(true)}
+                        >
+                            Invite
+                        </button>
                     </div>
                 </>
             )}

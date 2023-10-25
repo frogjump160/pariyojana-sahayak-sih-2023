@@ -107,11 +107,6 @@ function OffCanvas() {
                     <AiFillProject className="offcanvas-icons" /> Projects
                 </NavLink>
 
-                <NavLink to="/my_questions" className="nav-link-item">
-                    <FaQuestionCircle className="offcanvas-icons" /> My
-                    Questions
-                </NavLink>
-
                 <NavLink
                     onClick={handleLogout}
                     to="/logout"

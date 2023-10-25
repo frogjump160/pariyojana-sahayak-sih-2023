@@ -1,4 +1,5 @@
-.project-description, .project-authors {
+.project-description,
+.project-authors {
     display: inline-block;
     background-color: #6DC9C3;
     padding: 2%;
@@ -14,4 +15,10 @@
 h5 {
     color: #04514D;
     font-weight: 600;
+}
+
+.pdf-div {
+    display: flex;
+    justify-content: flex-start;
+    height: 40vh;
 }

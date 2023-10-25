@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import Heading from "../../components/Heading";
+import { Document, Page } from "react-pdf";
 
 import { format } from "date-fns";
 
@@ -25,17 +26,42 @@ function PublishedProject({ project }) {
                     {/* <div>Host : {project.host_institute}</div> */}
 
                     {/* <div> */}
-                    <div className = "upper-container">
+                    <div className="upper-container">
                         <div className="project-description">
                             <h5>DESCRIPTION</h5>
                             {project.description}
                         </div>
                         {/* </div> */}
-                        
+
                         <div className="project-authors">
                             <h5>AUTHORS</h5>
-                            {authorsList.map((n, i)=>(<p key={i}>{n}</p>))}
+                            {authorsList.map((n, i) => (
+                                <p key={i}>{n}</p>
+                            ))}
                         </div>
+                    </div>
+
+                    {/* <div>
+                        <Document
+                            file={
+                                "https://drive.google.com/file/d/12FN-xEIg38gz27Da1NsqtZBvY6QthoYl/view?usp=drive_link"
+                            }
+                            onLoadSuccess={onDocumentLoadSuccess}
+                        >
+                            <Page pageNumber={pageNumber} />
+                        </Document>
+                        <p>
+                            Page {pageNumber} of {numPages}
+                        </p>
+                    </div> */}
+
+                    <div className="pdf-div">
+                        <object
+                            data="https://www.africau.edu/images/default/sample.pdf"
+                            type="application/pdf"
+                            width="50%"
+                            height="100%"
+                        ></object>
                     </div>
 
                     {/* <div>
