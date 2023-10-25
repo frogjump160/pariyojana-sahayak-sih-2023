@@ -1,12 +1,12 @@
-.project-description,
-.project-authors {
-    display: inline-block;
+ .project-description,
+.project-authors, .project-tags, .view-code-btn, .project-comments {
     background-color: #6DC9C3;
-    padding: 2%;
+    padding: 2vw;
     color: #04514D;
+    border-radius: 5px;
 }
 
-.upper-container {
+.middle-container {
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
@@ -15,10 +15,56 @@
 h5 {
     color: #04514D;
     font-weight: 600;
+    margin-bottom: 1rem;
 }
 
+
 .pdf-div {
+    margin: 3.33vh 0;
+    height: 80vh;
+}
+
+.left-container, .right-container {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.left-container {
+    width: 70%;
+}
+.right-container {
+    width: 20%;
+}
+
+.view-code-btn {
     display: flex;
-    justify-content: flex-start;
-    height: 40vh;
+    justify-content: center;
+    align-items: center;
+    margin: 3.33vh 0;
+    border-radius: 100px;
+    padding: 1vw;
+    height: 8vh;
+}
+
+.view-code-btn h5 {
+    margin: 0;
+}
+
+.heading-pub {
+    margin: 0 0 1rem 0;
+    text-align: left;
+}
+
+.project-comments {
+    margin-bottom: 3.33vh;
+}
+
+.upper-container {
+    margin: 3.33vh 3.33vw;
+}
+
+.dates {
+    text-align: left;
+    color: #0F7B77;
+    font-weight: 600;
 }
