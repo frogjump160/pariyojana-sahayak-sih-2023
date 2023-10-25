@@ -15,7 +15,7 @@ import {
 } from "react-icons/ai";
 import { AiOutlineHome } from "react-icons/ai";
 import { GiBrain } from "react-icons/gi";
-import { RiVideoAddLine } from "react-icons/ri";
+import { RiAccountCircleFill, RiVideoAddLine } from "react-icons/ri";
 import { AiFillHeart } from "react-icons/ai";
 import { RiHistoryFill } from "react-icons/ri";
 import { RiDraftLine } from "react-icons/ri";
@@ -83,12 +83,19 @@ function OffCanvas() {
             </div>
 
             <div className="offcanvas-body" id="sidebar">
-                <NavLink to="/" className="nav-link-item" style={{borderTop: "solid", borderColor: "#04514D"}}>
+                <NavLink
+                    to="/"
+                    className="nav-link-item"
+                    style={{ borderTop: "solid", borderColor: "#04514D" }}
+                >
                     <AiOutlineHome className="offcanvas-icons" /> Home
                 </NavLink>
 
-                <NavLink to={`/profile/${auth?.user?._id}`} className="nav-link-item">
-                    <AiFillPlusCircle className="offcanvas-icons" /> Profile
+                <NavLink
+                    to={`/profile/${auth?.user?._id}`}
+                    className="nav-link-item"
+                >
+                    <RiAccountCircleFill className="offcanvas-icons" /> Profile
                 </NavLink>
 
                 <NavLink to="/create-project" className="nav-link-item">

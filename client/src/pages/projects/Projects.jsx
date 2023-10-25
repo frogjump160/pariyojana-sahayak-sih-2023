@@ -19,8 +19,8 @@ function Projects() {
     const fetchLimit = 1;
     const [projectsList, setProjectsList] = useState([]);
     const [projectType, setProjectType] = useState("Published");
-    const [ongoingProjects, setOngoingProjects] = useState([]);
-    const [publishedProjects, setPublishedProjects] = useState([]);
+    // const [ongoingProjects, setOngoingProjects] = useState([]);
+    // const [publishedProjects, setPublishedProjects] = useState([]);
     const [fetched, setFetched] = useState(0);
 
     const getOngoingProjectsList = async () => {
@@ -33,8 +33,9 @@ function Projects() {
                 throw "Something went wrong";
             }
 
-            console.log(data?.projects?.ongoing_projects_list);
-            setOngoingProjects(data?.projects);
+            // console.log(data?.projects?.ongoing_projects_list);
+            // setOngoingProjects(data?.projects);
+            return data?.projects;
         } catch (err) {
             toast.error(err);
         }
@@ -42,7 +43,7 @@ function Projects() {
 
     const getPublishedProjectsList = async () => {
         try {
-            const fetchUrl = `/api/v1/projects/get-published-projects-list`;
+            const fetchUrl = `/api/v1/projects/get-published-projects-list/${auth?.user?._id}`;
 
             const { data } = await axios.get(fetchUrl);
 
@@ -50,8 +51,9 @@ function Projects() {
                 throw "Something went wrong";
             }
 
-            console.log(data?.projects);
-            setPublishedProjects(data?.projects);
+            // console.log(data?.projects);
+            // setPublishedProjects(data?.projects);
+            return data?.projects;
         } catch (err) {
             toast.error(err);
         }
@@ -76,10 +78,12 @@ function Projects() {
     };
 
     const fetchProjects = async () => {
-        console.log("here");
-        console.log(ongoingProjects);
-        console.log(publishedProjects);
+        // console.log("here");
+        // console.log(ongoingProjects);
+        // console.log(publishedProjects);
+
         if (projectType === "Ongoing") {
+            const ongoingProjects = await getOngoingProjectsList();
             let arr = [];
             // let count = 0;
             for (
@@ -95,6 +99,7 @@ function Projects() {
                 return [...prev, ...arr];
             });
         } else {
+            const publishedProjects = await getPublishedProjectsList();
             let arr = [];
             // let count = 0;
             for (
@@ -117,23 +122,28 @@ function Projects() {
         }
     };
 
-    useEffect(() => {
-        getPublishedProjectsList();
-        getOngoingProjectsList();
-        // fetchProjects();
-        // setProjectType("Published");
-    }, []);
+    // useEffect(() => {
+    //     getPublishedProjectsList();
+    //     getOngoingProjectsList();
+    // }, []);
 
+    // useEffect(() => {
+    //     setProjectsList([]);
+    //     setFetched(0);
+    //     fetchProjects();
+    // }, [projectType]);
+
+    // useEffect(() => {
+    //     fetchProjects();
+    // }, [fetched]);
     useEffect(() => {
         setProjectsList([]);
         setFetched(0);
-        fetchProjects();
     }, [projectType]);
 
     useEffect(() => {
         fetchProjects();
     }, [fetched]);
-
     // useEffect(() => {
     //     fetchData();
     // }, [skip]);

@@ -5,6 +5,7 @@ import projectModel from "../models/projectModel.js";
 import facultyModel from "../models/facultyModel.js";
 import instituteModel from "../models/instituteModel.js";
 import studentModel from "../models/studentModel.js";
+import userModel from "../models/userModel.js";
 
 export const getTrendingProjectsController = async (req, res) => {
     try {
@@ -153,9 +154,17 @@ export const getOngoingProjectsListController = async (req, res) => {
 
 export const getPublishedProjectsListController = async (req, res) => {
     try {
+        const id = req.params.id;
+
+        const user = await userModel.findOne({ _id: id });
+
+        if (!user) {
+            throw "Invalid user.";
+        }
+
         let collection;
 
-        switch (req.user.type) {
+        switch (user.type) {
             case "Student":
                 collection = studentModel;
                 break;
@@ -168,7 +177,7 @@ export const getPublishedProjectsListController = async (req, res) => {
         }
 
         const projects = await collection
-            .findOne({ _id: req.user._id })
+            .findOne({ _id: id })
             .select("published_projects_list -_id");
 
         res.status(200).send({
