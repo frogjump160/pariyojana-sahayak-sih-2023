@@ -39,19 +39,18 @@ const Routing = () => {
                 }
             />
             {/* <Route path="/signup" element={<Signup />} /> */}
-            <Route
+            {/* <Route
                 path="/projects"
-                element={!auth?.user ? <Signup /> : <Projects />}
-            />
-            <Route
-                path="/profile/:id"
-                element={<Profile />}
-            />
+                element={auth?.user ? <Projects /> : <Navigate to="/login" />}
+            /> */}
+            {auth?.user && <Route path="/projects" element={<Projects />} />}
+
+            <Route path="/profile/:id" element={<Profile />} />
             <Route path="/project_details/:id" element={<ProjectDetails />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/userdata" element={<Userdata />} />
         </Routes>
-    ); 
+    );
 };
 
 function App() {
@@ -63,7 +62,8 @@ function App() {
                 <Toaster />
             </div>
             <Navbar />
-            {auth?.user && <OffCanvas />}
+            {/* {auth?.user && <OffCanvas />} */}
+            <OffCanvas />
             <Routing />
         </div>
     );

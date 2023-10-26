@@ -20,6 +20,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { RiHistoryFill } from "react-icons/ri";
 import { RiDraftLine } from "react-icons/ri";
 import { GiMoneyStack } from "react-icons/gi";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { UserState } from "../context/AuthContext";
 
 function OffCanvas() {
@@ -91,29 +92,49 @@ function OffCanvas() {
                     <AiOutlineHome className="offcanvas-icons" /> Home
                 </NavLink>
 
-                <NavLink
-                    to={`/profile/${auth?.user?._id}`}
-                    className="nav-link-item"
-                >
-                    <RiAccountCircleFill className="offcanvas-icons" /> Profile
-                </NavLink>
+                {!auth?.user && (
+                    <>
+                        <NavLink to={`/login`} className="nav-link-item">
+                            <FiLogIn className="offcanvas-icons" />
+                            Login
+                        </NavLink>
 
-                <NavLink to="/create-project" className="nav-link-item">
-                    <AiFillPlusCircle className="offcanvas-icons" /> Create
-                    Project
-                </NavLink>
+                        <NavLink to="/signup" className="nav-link-item">
+                            <RiAccountCircleFill className="offcanvas-icons" />
+                            Sign Up
+                        </NavLink>
+                    </>
+                )}
 
-                <NavLink to="/projects" className="nav-link-item">
-                    <AiFillProject className="offcanvas-icons" /> Projects
-                </NavLink>
+                {auth?.user && (
+                    <>
+                        <NavLink
+                            to={`/profile/${auth?.user?._id}`}
+                            className="nav-link-item"
+                        >
+                            <RiAccountCircleFill className="offcanvas-icons" />{" "}
+                            Profile
+                        </NavLink>
 
-                <NavLink
-                    onClick={handleLogout}
-                    to="/logout"
-                    className="nav-link-item"
-                >
-                    <BiMessageAltCheck className="offcanvas-icons" /> Logout
-                </NavLink>
+                        <NavLink to="/create-project" className="nav-link-item">
+                            <AiFillPlusCircle className="offcanvas-icons" />{" "}
+                            Create Project
+                        </NavLink>
+
+                        <NavLink to="/projects" className="nav-link-item">
+                            <AiFillProject className="offcanvas-icons" />{" "}
+                            Projects
+                        </NavLink>
+
+                        <NavLink
+                            onClick={handleLogout}
+                            to="/logout"
+                            className="nav-link-item"
+                        >
+                            <FiLogOut className="offcanvas-icons" /> Logout
+                        </NavLink>
+                    </>
+                )}
             </div>
         </div>
     );

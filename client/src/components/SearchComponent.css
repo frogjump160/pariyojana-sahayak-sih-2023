@@ -1,7 +1,8 @@
-.search-form{
+.search-form {
     /* margin-top: 5rem; */
     width: 70%;
     text-align: center;
+    padding: 0;
 }
 
 .search-component {
@@ -9,10 +10,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
+    /* background-color: red; */
 }
 
-.searchbar{
-    border : 0.1rem solid;
+.searchbar {
+    border: 0.1rem solid;
     border-radius: 25px;
 }

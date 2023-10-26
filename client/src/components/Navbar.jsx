@@ -4,9 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 // icons
-import { FaUserCircle } from "react-icons/fa";
+import { FaRegBell, FaUserCircle } from "react-icons/fa";
 import { UserState } from "../context/AuthContext";
 import SearchComponent from "./SearchComponent";
+import Badge from "@mui/material/Badge";
+import { BsBellFill } from "react-icons/bs";
 
 // components
 // import OffCanvas from './OffCanvas'
@@ -33,49 +35,65 @@ function Navbar() {
         };
 
         // if user is logged in
-        if (auth?.user) {
-            return (
-                <>
-                    <li>
-                        {/* <SearchComponent /> */}
-                    </li>   
-                    <li
-                        className="nav-item btn btn-light"
-                        type="button"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasWithBothOptions"
-                        aria-controls="offcanvasWithBothOptions"
-                    >
-                        <FaUserCircle style={userIcon} />
+        // if (auth?.user) {
+        return (
+            <>
+                <li
+                    className="nav-item"
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                    }}
+                >
+                    <SearchComponent />
+                </li>
+                {auth?.user && (
+                    <li className="nav-item btn btn-light" type="button">
+                        <Badge badgeContent={69} color="error">
+                            <FaRegBell
+                                style={{
+                                    fontSize: "1.2rem",
+                                }}
+                            />
+                        </Badge>
                     </li>
-                </>
-            );
-        } else {
-            return (
-                <>
-                    {/* <li ><Link to="/about" className="nav-item btn btn-outline-primary">About</Link></li> */}
-                    <li>
-                        <SearchComponent />
-                    </li>   
-                    <li>
-                        <Link
-                            to="/login"
-                            className="nav-item btn btn-outline-primary"
-                        >
-                            Login
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/signup"
-                            className="nav-item btn btn-outline-primary"
-                        >
-                            Signup
-                        </Link>
-                    </li>
-                </>
-            );
-        }
+                )}
+
+                <li
+                    className="nav-item btn btn-light"
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBothOptions"
+                    aria-controls="offcanvasWithBothOptions"
+                >
+                    <FaUserCircle style={userIcon} />
+                </li>
+            </>
+        );
+        // }
+        // else {
+        //     return (
+        //         <>
+
+        //             <li>
+        //                 <Link
+        //                     to="/login"
+        //                     className="nav-item btn btn-outline-primary"
+        //                 >
+        //                     Login
+        //                 </Link>
+        //             </li>
+        //             <li>
+        //                 <Link
+        //                     to="/signup"
+        //                     className="nav-item btn btn-outline-primary"
+        //                 >
+        //                     Signup
+        //                 </Link>
+        //             </li>
+        //         </>
+        //     );
+        // }
     };
 
     const userIcon = {

@@ -82,7 +82,10 @@ function Projects() {
         // console.log(ongoingProjects);
         // console.log(publishedProjects);
 
+        console.log(projectType);
+
         if (projectType === "Ongoing") {
+            console.log("here ong");
             const ongoingProjects = await getOngoingProjectsList();
             let arr = [];
             // let count = 0;
@@ -95,10 +98,12 @@ function Projects() {
                 // count++;
             }
 
+            setFetched(projectsList.length + arr.length);
             setProjectsList((prev) => {
                 return [...prev, ...arr];
             });
         } else {
+            console.log("here pub");
             const publishedProjects = await getPublishedProjectsList();
             let arr = [];
             // let count = 0;
@@ -116,42 +121,22 @@ function Projects() {
             console.log("test");
             console.log(arr);
 
+            setFetched(projectsList.length + arr.length);
             setProjectsList((prev) => {
                 return [...prev, ...arr];
             });
         }
     };
 
-    // useEffect(() => {
-    //     getPublishedProjectsList();
-    //     getOngoingProjectsList();
-    // }, []);
-
-    // useEffect(() => {
-    //     setProjectsList([]);
-    //     setFetched(0);
-    //     fetchProjects();
-    // }, [projectType]);
+    useEffect(() => {
+        setProjectsList([]);
+        setFetched(0);
+        fetchProjects();
+    }, [projectType]);
 
     // useEffect(() => {
     //     fetchProjects();
     // }, [fetched]);
-    useEffect(() => {
-        setProjectsList([]);
-        setFetched(0);
-    }, [projectType]);
-
-    useEffect(() => {
-        fetchProjects();
-    }, [fetched]);
-    // useEffect(() => {
-    //     fetchData();
-    // }, [skip]);
-
-    // useEffect(() => {
-    //     setProjectsList([]);
-    //     setSkip(0);
-    // }, [projectType]);
 
     return (
         <div className="home-div container-fluid">
@@ -165,11 +150,20 @@ function Projects() {
                 setItem={setProjectType}
             />
 
-            <InfiniteScroll
+            {/* <InfiniteScroll
                 dataLength={projectsList.length}
                 next={() => {
                     setFetched(projectsList.length);
                 }}
+                hasMore={true}
+                loader={<h4>Loading...</h4>}
+            >
+                <ProjectGrid projectList={projectsList} />
+            </InfiniteScroll> */}
+
+            <InfiniteScroll
+                dataLength={projectsList.length}
+                next={fetchProjects}
                 hasMore={true}
                 loader={<h4>Loading...</h4>}
             >
@@ -179,4 +173,4 @@ function Projects() {
     );
 }
 
-export default Projects
+export default Projects;
