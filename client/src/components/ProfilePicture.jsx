@@ -9,7 +9,7 @@ import "./ProfilePicture.css"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function ProfilePicture({ src, username, fontColor }) {
+function ProfilePicture({ src, username, fontColor, imgSize }) {
 
 	const { user } = UserState()
 	const [updateRequest, setUpdateRequest] = useState(false)
@@ -122,9 +122,9 @@ function ProfilePicture({ src, username, fontColor }) {
 	}
 
 	return (
-		<div className="profile-div">
+		<div className="profile-div" style={{width: "auto", height: "auto"}}>
 			{/* <ToastContainer /> */}
-			<img src={src} className="profile-img" />
+			<img src={src} className="profile-img" style={{width: imgSize, height: "auto"}} />
 			<p style={{color: fontColor, fontWeight: "700", fontSize: "2rem", margin: "1rem 0 0 0"}}>{username}</p>
 			{/* {!updateRequest &&
 				<button

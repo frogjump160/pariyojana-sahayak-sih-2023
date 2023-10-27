@@ -30,6 +30,7 @@ h5 {
 }
 
 .left-container {
+    align-items: flex-start;
     width: 70%;
 }
 .right-container {
@@ -75,4 +76,16 @@ h5 {
 .ongoing-icons {
     /* height: 1rem; */
     margin-left: 0.5vw;
+    /* font-size : 2rem; */
+}
+
+.open-for {
+    font-size: x-large;
+    margin-top: 1rem;
+    color: #0F7B77;
+    font-weight: 600;
+}
+
+.project-tags {
+    margin: 2rem 0;
 }

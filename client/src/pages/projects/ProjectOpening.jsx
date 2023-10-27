@@ -6,12 +6,16 @@ import Heading from "../../components/Heading";
 import { MdModeEditOutline } from "react-icons/md"
 import { format } from "date-fns";
 
+import {ImCross} from "react-icons/im";
+import {TiTick} from "react-icons/ti";
+
 import "./ProjectOpening.css";
 import InviteModal from "../../components/InviteModal";
 
 function ProjectOpening({ project }) {
     const [inviteModalShow, setInviteModalShow] = useState(false);
-    const authorsList = ["Arin", "Saptarshi", "urmom"];
+    const authorsList = ["Arin", "Saptarshi", "Upayan"];
+    const applicantsList = ["Parthiv", "Spandan", "Sudipta"];
     const tagsList = ["AI", "ML", "Web Dev"];
     return (
         <div>
@@ -29,7 +33,9 @@ function ProjectOpening({ project }) {
                             <h1>
                                 {project?.title.toUpperCase()}
                             </h1>
-                            <MdModeEditOutline className="ongoing-icons light"/>
+                            <MdModeEditOutline className="ongoing-icons light"
+                            style={{fontSize : "2rem"}}
+                            />
                         </div>
 
                         <div className="dates">
@@ -60,17 +66,22 @@ function ProjectOpening({ project }) {
                         <div className="dates">
                             Project End Date : &nbsp;
                             {format(new Date(project?.end_date), "dd-MM-yyyy")}
+                        <MdModeEditOutline className="ongoing-icons light"
+                            style={{fontSize : "1.3rem"}}
+                            />
                         </div>
                     </div>
  
                     <div className="middle-container">
                         <div className="left-container">
                             <div className="project-description">
-                                <h5>DESCRIPTION</h5>
+                                <h5>DESCRIPTION <MdModeEditOutline className="ongoing-icons light"
+                            style={{fontSize : "1.3rem"}}
+                            /></h5>
                                 {project.description}
                             </div>
 
-                            <div>
+                            <div className="open-for">
                                 {project.open_for}
                             </div>
                         </div>
@@ -78,7 +89,7 @@ function ProjectOpening({ project }) {
                             <div className="project-authors">
                                 <h5>AUTHORS</h5>
                                 {authorsList.map((n, i) => (
-                                    <p key={i}>{n}</p>
+                                    <p key={i}>{n} <ImCross style={{marginLeft : "1rem"}} /></p>
                                 ))}
                             </div>
                             
@@ -92,10 +103,19 @@ function ProjectOpening({ project }) {
                                 </h5>
                             </div>
 
+                            <div className="project-authors">
+                                <h5>
+                                    Applicants
+                                </h5>
+                                {applicantsList.map((n, i) => (
+                                    <p key={i}>{n} <TiTick style={{ fontSize : "1.8rem"}} /> <ImCross style={{marginLeft : "1rem"}} /></p>
+                                ))}
+                            </div>
+
                             <div className="project-tags">
                                 <h5>TAGS</h5>
                                 {tagsList.map((n, i) => (
-                                    <p key={i}>{n}</p>
+                                    <p key={i}>{n} <ImCross style={{marginLeft : "1rem"}} /></p>
                                 ))}
                             </div>
                         </div>

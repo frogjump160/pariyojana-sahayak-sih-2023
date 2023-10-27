@@ -49,7 +49,7 @@ function Navbar() {
                 </li>
                 {auth?.user && (
                     <li className="nav-item btn btn-light" type="button">
-                        <Badge badgeContent={69} color="error">
+                        <Badge badgeContent={9} color="error">
                             <FaRegBell
                                 style={{
                                     fontSize: "1.2rem",

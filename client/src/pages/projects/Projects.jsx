@@ -16,7 +16,7 @@ import Heading from "../../components/Heading";
 function Projects() {
     const { auth } = UserState();
     const [skip, setSkip] = useState(0);
-    const fetchLimit = 1;
+    const fetchLimit = 2;
     const [projectsList, setProjectsList] = useState([]);
     const [projectType, setProjectType] = useState("Published");
     // const [ongoingProjects, setOngoingProjects] = useState([]);
