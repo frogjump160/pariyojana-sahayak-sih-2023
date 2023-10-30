@@ -22,6 +22,7 @@ h5 {
 .pdf-div {
     margin: 3.33vh 0;
     height: 80vh;
+    width: 100%;
 }
 
 .left-container, .right-container {
